@@ -19,7 +19,7 @@ Tokens de color: naranja `#ff7043`, lavanda `#d1c4e9`, sage `#d9e3d8`. Fuente: `
 
 ## Requisitos
 
-- Node.js `^20.19.0` o `>=22.12.0` (lo exige Vite 8)
+- Node.js **22.x** (`.nvmrc` y `engines` en `package.json`; Vite 8 pide ≥ 20.19 o ≥ 22.12)
 - npm
 
 ## Arranque
