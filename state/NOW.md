@@ -1,4 +1,4 @@
-# NOW — 2026-11-24
+# NOW — 2026-11-26
 
 ## Hecho
 
@@ -19,7 +19,7 @@
 - `portada-layout.png` (mockup lilá) en assets, no usada.
 - Pedidos Ya sin portada full-bleed tipo Remitly/TLPianxos.
 - Deploy URL pública (ficha 4D D4) no hecho en este repo.
-- Git: estado no versionado de forma activa en estas sesiones (no commit salvo pedido).
+- Git publicado: https://github.com/AndresStoehrel/Portafolio-Andres-Stoehrel (`main`, público). Primer commit `45d4f24`. Esta nota de NOW queda solo en local hasta el próximo commit.
 
 ## Blockers
 
