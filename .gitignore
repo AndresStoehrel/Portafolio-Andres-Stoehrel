@@ -1,0 +1,12 @@
+# Memory / agent noise (keep source memory tracked)
+.DS_Store
+node_modules
+dist
+build
+server.js
+*.local
+
+# Secrets — never commit env files. .env.example is a placeholder only.
+.env
+.env.*
+!.env.example

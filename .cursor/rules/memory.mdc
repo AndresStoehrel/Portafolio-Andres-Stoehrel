@@ -1,0 +1,17 @@
+---
+description: Índice de memoria del portafolio. Cargar AGENTS.md y state/NOW.md; no volcar el repo.
+alwaysApply: true
+---
+
+# Memoria del proyecto
+
+Antes de explorar el repo: leer `AGENTS.md` y `state/NOW.md`.
+
+- No cargar historial completo ni todos los archivos.
+- Routing de skills y archivos: `AGENTS.md`.
+- Copy de cases: solo `src/data/*Case.ts`. No inventar.
+- No restylear otras páginas. No commit sin pedido.
+- Verificar UI en browser cuando el cambio es visible.
+- Responder en español.
+
+Tras una sesión material: `skills/session-close.md`.

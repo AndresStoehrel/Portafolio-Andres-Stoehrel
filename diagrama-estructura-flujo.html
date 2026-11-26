@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagrama — Portafolio Andrés Stoehrel</title>
+  <style>
+    :root {
+      --black: #111;
+      --ink: #1a1a1a;
+      --muted: #5a5a5a;
+      --line: #222;
+      --paper: #f7f5f2;
+      --white: #fff;
+      --orange: #ff5e3a;
+      --lavender: #d1baff;
+      --sage: #d5e0d5;
+      --blue: #2b6cb0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+    header {
+      border-bottom: 2px solid var(--line);
+      background: var(--white);
+      padding: 28px 24px 22px;
+    }
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+    header p { margin: 0; color: var(--muted); max-width: 52rem; }
+    main { padding: 24px; max-width: 1100px; margin: 0 auto; }
+    h2 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 32px 0 12px;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 6px;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+    .swatch {
+      display: inline-block;
+      width: 12px; height: 12px;
+      border: 1px solid var(--line);
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+    .tree {
+      background: var(--white);
+      border: 2px solid var(--line);
+      padding: 16px 18px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.82rem;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .flow {
+      display: grid;
+      gap: 10px;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px;
+      align-items: stretch;
+    }
+    @media (max-width: 720px) {
+      .row { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); text-align: center; }
+    }
+    .box {
+      border: 2px solid var(--line);
+      background: var(--white);
+      padding: 12px 14px;
+    }
+    .box h3 { margin: 0 0 6px; font-size: 0.95rem; }
+    .box p, .box ul { margin: 0; font-size: 0.85rem; color: var(--muted); }
+    .box ul { padding-left: 1.1rem; }
+    .arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border: 1px solid var(--line);
+      margin-bottom: 8px;
+    }
+    .data { background: #fff4e8; }
+    .app { background: #eef3ff; }
+    .ui { background: #f3fff0; }
+    .state { background: #f6eeff; }
+    .screens {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 720px) { .screens { grid-template-columns: 1fr; } }
+    .note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Estructura y flujo de datos — Portafolio Andrés Stoehrel</h1>
+    <p>Archivo de revisión (no forma parte de la app). La app es un portafolio React/Vite de una sola página: Home y caso de estudio se alternan según estado en <code>App.tsx</code>. Los datos son mock estáticos en <code>src/data/projects.ts</code>.</p>
+  </header>
+  <main>
+    <h2>Leyenda</h2>
+    <div class="legend">
+      <span><i class="swatch" style="background:#fff4e8"></i> Datos mock</span>
+      <span><i class="swatch" style="background:#eef3ff"></i> Orquestación (App)</span>
+      <span><i class="swatch" style="background:#f3fff0"></i> Pantallas / UI</span>
+      <span><i class="swatch" style="background:#f6eeff"></i> Estado local</span>
+    </div>
+
+    <h2>1. Estructura del proyecto</h2>
+    <div class="tree">portafolio-andres-stoehrel/
+├── index.html              ← monta #root
+├── package.json            ← Vite + React
+├── src/
+│   ├── main.tsx            ← createRoot → App
+│   ├── App.tsx             ← estado, routing interno, props
+│   ├── index.css           ← Tailwind / tokens de color
+│   ├── data/
+│   │   └── projects.ts     ← PROJECTS[] (Remitly, Telepianxos, Pedidos Ya)
+│   ├── assets/images/      ← capturas de prototipo (JPG)
+│   └── components/
+│       ├── Header.tsx
+│       ├── HomeView.tsx    ← Hero, About, Work, Contact
+│       ├── CaseStudyView.tsx
+│       ├── DeviceMockup.tsx
+│       └── EmptyState.tsx
+└── diagrama-estructura-flujo.html  ← este archivo (nuevo, aparte)</div>
+
+    <h2>2. Pantallas (vistas)</h2>
+    <div class="screens">
+      <div class="box ui">
+        <span class="tag">Vista A</span>
+        <h3>HomeView</h3>
+        <p>Una sola página con anclas: Hero, About (<code>#about</code>), Proyectos seleccionados (<code>#work</code>), Contacto (<code>#contact</code>).</p>
+      </div>
+      <div class="box ui">
+        <span class="tag">Vista B</span>
+        <h3>CaseStudyView</h3>
+        <p>Reemplaza el main. Cabecera, desafío/métricas, insights, solución (antes/después + features), aprendizajes, CTA Behance y prev/next.</p>
+      </div>
+      <div class="box ui">
+        <span class="tag">Siempre visible</span>
+        <h3>Header</h3>
+        <p>Sticky. Logo → home. About / Work / Contact hacen scroll (si hay caso abierto, primero vuelve a home).</p>
+      </div>
+      <div class="box ui">
+        <span class="tag">Fallback</span>
+        <h3>EmptyState</h3>
+        <p>Lista vacía si <code>isEmptyState</code> es true, o “caso no encontrado” si el id no existe en <code>PROJECTS</code>.</p>
+      </div>
+    </div>
+
+    <h2>3. Flujo de datos de ejemplo</h2>
+    <div class="flow">
+      <div class="row">
+        <div class="box data">
+          <span class="tag">Fuente</span>
+          <h3>projects.ts → PROJECTS</h3>
+          <ul>
+            <li>id, number, title, oneLiner</li>
+            <li>metadata, heroTheme, problemStatement</li>
+            <li>metrics[], insights[], designGoal</li>
+            <li>comparison, featureHighlights[]</li>
+            <li>learnings[], whatToDoDifferently, behanceUrl</li>
+          </ul>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="box app">
+          <span class="tag">Orquestación</span>
+          <h3>App.tsx</h3>
+          <ul>
+            <li><code>selectedProjectId</code>: null = Home</li>
+            <li><code>isEmptyState</code>: si true, <code>activeProjects = []</code></li>
+            <li>si hay id → <code>PROJECTS.find(id)</code> = currentProject</li>
+            <li>prev/next recorren el array en círculo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="box ui">
+          <span class="tag">Home</span>
+          <h3>HomeView ← activeProjects</h3>
+          <p>Mapea cada proyecto a una fila (número, título, miniatura por <code>project.id</code>). Click llama <code>onSelectProject(id)</code>.</p>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="box state">
+          <span class="tag">Estado</span>
+          <h3>setSelectedProjectId(id)</h3>
+          <p>Ejemplo: click en “Remitly” → id <code>remitly</code>. App busca ese objeto y monta CaseStudyView.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="box ui">
+          <span class="tag">Caso</span>
+          <h3>CaseStudyView ← project</h3>
+          <p>Renderiza el objeto completo. DeviceMockup recibe <code>projectId</code> + <code>mockupType</code> de cada feature y elige JPGs en assets.</p>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="box state">
+          <span class="tag">Local UI</span>
+          <h3>comparisonMode</h3>
+          <p>Estado interno del caso: before / after / side-by-side. No modifica PROJECTS. Prev/next cambian el id en App.</p>
+        </div>
+      </div>
+    </div>
+    <p class="note">No hay API ni Gemini en el flujo de pantallas: el contenido visible sale del array mock y de las imágenes locales. El toggle de empty state está definido en App pero no está cableado al Header.</p>
+  </main>
+</body>
+</html>

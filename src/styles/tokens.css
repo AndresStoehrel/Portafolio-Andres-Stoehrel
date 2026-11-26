@@ -1,0 +1,88 @@
+/**
+ * Design tokens — editorial reference (AI in Design Report 2026).
+ * Fase 1: tipografía + color semántico. Estructura de componentes sin cambiar aquí.
+ */
+
+@theme {
+  /* —— Color (reporte + legado portafolio) —— */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-orange: #ff7043;
+  --color-lavender: #d1c4e9;
+  --color-sage: #d9e3d8;
+
+  --color-canvas: var(--color-white);
+  --color-ink: var(--color-black);
+  --color-ink-muted: rgb(0 0 0 / 0.55);
+  --color-accent: var(--color-orange);
+  --color-block-orange: var(--color-orange);
+  --color-block-lavender: var(--color-lavender);
+  --color-block-sage: var(--color-sage);
+  --color-footer: var(--color-black);
+
+  /* —— Tipografía —— */
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  /* Escala (referencia editorial) */
+  --text-display: clamp(2.25rem, 5vw, 4rem);
+  --text-headline: clamp(1.75rem, 3.5vw, 3rem);
+  --text-body: clamp(1rem, 1.25vw, 1.25rem);
+  /* Hero home — ~72px / ~36px en desktop */
+  --text-hero-name: clamp(2.5rem, 6vw, 4.5rem);
+  --text-hero-lead: clamp(1.25rem, 3vw, 2.25rem);
+  --text-craft-banner: clamp(2.25rem, 5vw, 4rem);
+  --space-craft-banner-y: clamp(5rem, 14vw, 9rem);
+  --space-craft-banner-x: clamp(2.5rem, 7vw, 5.5rem);
+  --text-kicker: 0.6875rem;
+
+  --leading-display: 1.05;
+  --leading-headline: 1.08;
+  --leading-body: 1.48;
+
+  --tracking-display: -0.025em;
+  --tracking-kicker: 0.12em;
+
+  /* —— Espaciado sección —— */
+  --space-section-x: clamp(1.5rem, 4.5vw, 3.5rem);
+  --space-section-y: clamp(2.5rem, 6vw, 5rem);
+  --space-about-panel-y: clamp(4rem, 10vw, 7rem);
+  --max-content: 90rem;
+
+  /* About — paneles con color fijo (no siguen swap light/dark de ink/canvas) */
+  --color-about-charcoal: #000000;
+  --color-about-on-charcoal: #ffffff;
+  --color-about-muted-on-charcoal: rgb(255 255 255 / 0.55);
+  --color-about-muted-on-sage: rgb(0 0 0 / 0.55);
+  --color-about-portrait: #3a3a3a;
+  --text-about-quote: clamp(2.75rem, 6vw, 4.25rem);
+  --text-about-name: 0.95rem;
+  --text-tag: 0.625rem;
+  --space-about-after-portrait: 44px;
+}
+
+/* Utilidades semánticas (Tailwind v4) */
+@utility bg-canvas {
+  background-color: var(--color-canvas);
+}
+@utility text-ink {
+  color: var(--color-ink);
+}
+@utility text-ink-muted {
+  color: var(--color-ink-muted);
+}
+@utility bg-accent {
+  background-color: var(--color-accent);
+}
+@utility text-accent {
+  color: var(--color-accent);
+}
+@utility border-ink {
+  border-color: var(--color-ink);
+}
+@utility bg-sage {
+  background-color: var(--color-sage);
+}
+@utility bg-footer {
+  background-color: var(--color-footer);
+}
