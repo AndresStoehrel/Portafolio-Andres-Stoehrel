@@ -33,7 +33,7 @@ El context window es caro y volátil. La memoria real vive en archivos. Este arc
 - Verificar UI en browser (flujo, no solo screenshot). Si no hay browser: decirlo.
 - Responder al usuario en español. Código/nombres de archivo en el idioma del repo.
 - `id` interno `telepianxos`. Nombre visible **TLPianxos**. No “Telepianxos” en UI.
-- No reescribir el `oneLiner`/metrics de TLPianxos en `projects.ts` (sigue placeholder de telemedicina a propósito).
+- Copy de TLPianxos en `projects.ts`: fuente `telepianxosCase.ts`; no texto de scaffold (p. ej. telemedicina).
 - Portada “flujo actual” de Remitly = `MutePlaceholder`. No inventar imagen.
 - `HeroRadialField` existe y no se monta. No mostrarlo.
 - Pause/play del hero: eliminado. No reintroducirlo.

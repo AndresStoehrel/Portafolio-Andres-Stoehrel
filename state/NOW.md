@@ -9,17 +9,17 @@
 - Quotes TLPianxos con `CaseQuote` + fotos.
 - Tokens en `src/styles/tokens.css`. Radius 0 global; círculos override.
 - Dark mode: invierte ink/canvas; motto hero queda `#141414`.
+- Git: https://github.com/AndresStoehrel/Portafolio-Andres-Stoehrel (`main`, público).
+- Deploy Vercel (producción).
+- `projects.ts` TLPianxos alineado con `telepianxosCase.ts` (eliminado copy de telemedicina del scaffold).
 
 ## Pendiente (no bloquea, no iniciar solo)
 
-- `projects.ts` TLPianxos `oneLiner`/metrics siguen de telemedicina (a propósito hasta que Andres pida copy de home).
 - Remitly “flujo actual”: `MutePlaceholder`.
 - `HeroRadialField.tsx` no montado.
 - Foto portada 1024 px de ancho: suave en Retina; reemplazar si Andres trae ≥1600 px.
 - `portada-layout.png` (mockup lilá) en assets, no usada.
 - Pedidos Ya sin portada full-bleed tipo Remitly/TLPianxos.
-- Deploy URL pública (ficha 4D D4) no hecho en este repo.
-- Git publicado: https://github.com/AndresStoehrel/Portafolio-Andres-Stoehrel (`main`, público). Primer commit `45d4f24`. Esta nota de NOW queda solo en local hasta el próximo commit.
 
 ## Blockers
 
@@ -27,4 +27,5 @@
 
 ## Foco reciente
 
-Portadas de caso + hero home. Último cambio de producto: hero Remitly con foto del hombre (Pexels), mismo layout que TLPianxos.
+Navegación: hero PORTAFOLIO → `#work`, header anclas con offset, volver a case studies → grid, LinkedIn confirmado, «Otros proyectos» disabled.
+Header: texto simple `AS / Portafolio` (sin bloques de color).

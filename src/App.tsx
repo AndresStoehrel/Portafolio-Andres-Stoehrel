@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Header } from './components/Header';
 import { HomeView } from './components/HomeView';
 import { CaseStudyView } from './components/CaseStudyView';
@@ -37,10 +37,28 @@ export default function App() {
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
-  // Auto scroll to top on view changes
+  const pendingScrollSectionRef = useRef<string | null>(null);
+
+  const scrollToSection = useCallback((sectionId: string) => {
+    requestAnimationFrame(() => {
+      const el = document.getElementById(sectionId);
+      el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }, []);
+
   useEffect(() => {
+    if (selectedProjectId !== null) {
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+      return;
+    }
+    const pending = pendingScrollSectionRef.current;
+    if (pending) {
+      pendingScrollSectionRef.current = null;
+      scrollToSection(pending);
+      return;
+    }
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-  }, [selectedProjectId]);
+  }, [selectedProjectId, scrollToSection]);
 
   const handleToggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
@@ -51,24 +69,22 @@ export default function App() {
   };
 
   const handleGoHome = () => {
+    pendingScrollSectionRef.current = null;
+    setSelectedProjectId(null);
+  };
+
+  const handleGoBackToWork = () => {
+    pendingScrollSectionRef.current = 'work';
     setSelectedProjectId(null);
   };
 
   const handleNavigateSection = (sectionId: string) => {
     if (selectedProjectId !== null) {
+      pendingScrollSectionRef.current = sectionId;
       setSelectedProjectId(null);
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
+      return;
     }
+    scrollToSection(sectionId);
   };
 
   const handleToggleEmptyState = () => {
@@ -96,7 +112,7 @@ export default function App() {
           currentProject ? (
             currentProject.id === 'remitly' ? (
               <RemitlyCaseStudyView
-                onGoBack={handleGoHome}
+                onGoBack={handleGoBackToWork}
                 onNavigatePrev={() => setSelectedProjectId(prevProject.id)}
                 onNavigateNext={() => setSelectedProjectId(nextProject.id)}
                 prevProjectTitle={prevProject.title}
@@ -104,7 +120,7 @@ export default function App() {
               />
             ) : currentProject.id === 'telepianxos' ? (
               <TelepianxosCaseStudyView
-                onGoBack={handleGoHome}
+                onGoBack={handleGoBackToWork}
                 onNavigatePrev={() => setSelectedProjectId(prevProject.id)}
                 onNavigateNext={() => setSelectedProjectId(nextProject.id)}
                 prevProjectTitle={prevProject.title}
@@ -113,7 +129,7 @@ export default function App() {
             ) : (
               <CaseStudyView
                 project={currentProject}
-                onGoBack={handleGoHome}
+                onGoBack={handleGoBackToWork}
                 onNavigatePrev={() => setSelectedProjectId(prevProject.id)}
                 onNavigateNext={() => setSelectedProjectId(nextProject.id)}
                 prevProjectTitle={prevProject.title}
@@ -133,7 +149,7 @@ export default function App() {
             isEmpty={isEmptyState}
             onSelectProject={handleSelectProject}
             onResetData={handleResetData}
-            onNavigateContact={() => handleNavigateSection('contact')}
+            onNavigateWork={() => handleNavigateSection('work')}
           />
         )}
       </main>

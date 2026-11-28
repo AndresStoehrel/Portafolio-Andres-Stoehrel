@@ -53,7 +53,11 @@ const CircleLayer: React.FC<{ src: string }> = ({ src }) => (
   />
 );
 
-export const HeroCircleGrid: React.FC = () => {
+interface HeroCircleGridProps {
+  onNavigateWork?: () => void;
+}
+
+export const HeroCircleGrid: React.FC<HeroCircleGridProps> = ({ onNavigateWork }) => {
   const [slots, setSlots] = useState<Layer[][]>([[], [], [], []]);
   const [merging, setMerging] = useState(false);
   const [showLavender, setShowLavender] = useState(false);
@@ -147,17 +151,33 @@ export const HeroCircleGrid: React.FC = () => {
         }}
       >
         <img src={frame2} alt="" className="hero-circle absolute inset-0 h-full w-full object-cover" />
-        {showLavender && (
-          <div className="hero-motto pointer-events-none absolute inset-0 flex items-center justify-center text-center">
-            <span className={`hero-motto-stack${showCue ? ' is-cued' : ''}`}>
-              <span className="hero-motto-line">Ver</span>
-              <span className="hero-motto-more">PORTAFOLIO</span>
-              <span className={`hero-motto-cue${showCue ? ' is-on' : ''}`}>
-                (<span className="hero-motto-arrow">↓</span>)
+        {showLavender &&
+          (showCue && onNavigateWork ? (
+            <button
+              type="button"
+              className="hero-motto hero-motto-cta absolute inset-0 flex items-center justify-center text-center"
+              onClick={onNavigateWork}
+              aria-label="Ir a case studies"
+            >
+              <span className="hero-motto-stack is-cued">
+                <span className="hero-motto-line">Ver</span>
+                <span className="hero-motto-more">PORTAFOLIO</span>
+                <span className="hero-motto-cue is-on">
+                  (<span className="hero-motto-arrow">↓</span>)
+                </span>
               </span>
-            </span>
-          </div>
-        )}
+            </button>
+          ) : (
+            <div className="hero-motto pointer-events-none absolute inset-0 flex items-center justify-center text-center">
+              <span className={`hero-motto-stack${showCue ? ' is-cued' : ''}`}>
+                <span className="hero-motto-line">Ver</span>
+                <span className="hero-motto-more">PORTAFOLIO</span>
+                <span className={`hero-motto-cue${showCue ? ' is-on' : ''}`}>
+                  (<span className="hero-motto-arrow">↓</span>)
+                </span>
+              </span>
+            </div>
+          ))}
       </div>
     </div>
   );

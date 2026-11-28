@@ -72,7 +72,7 @@ El copy de los casos vive en los archivos de data. Los componentes lo leen; no l
 | Color y tipo | `src/styles/tokens.css` |
 | Radio, dark mode, CSS del hero | `src/index.css` |
 
-El `oneLiner` y las métricas de TLPianxos en `projects.ts` siguen como placeholder de telemedicina a propósito, hasta que Andrés pida el copy de la home.
+Copy de TLPianxos en `projects.ts` debe coincidir con `telepianxosCase.ts` (la home solo muestra título e imagen; el resto alimenta rutas genéricas).
 
 ## Estructura
 

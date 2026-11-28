@@ -24,16 +24,16 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-50 bg-canvas text-ink">
       <div
         className="mx-auto"
-        style={{ maxWidth: 'var(--max-content)', paddingInline: 'var(--space-section-x)' }}
+        style={{ paddingInline: 'var(--content-inset)' }}
       >
         <div className="h-12 md:h-14 flex items-center justify-between gap-6">
           <button
-          type="button"
-          onClick={onGoHome}
-          className="font-medium text-base md:text-lg tracking-tight whitespace-nowrap shrink-0 hover:opacity-70 transition-opacity duration-150 cursor-pointer"
-          title="Ir al inicio"
-        >
-            AiiD / Andrés Stoehrel
+            type="button"
+            onClick={onGoHome}
+            className="font-medium text-base md:text-lg tracking-tight whitespace-nowrap shrink-0 hover:opacity-70 transition-opacity duration-150 cursor-pointer"
+            title="Ir al inicio"
+          >
+            AS / Portafolio
           </button>
 
           <nav className="flex items-center gap-4 md:gap-8 shrink-0">
