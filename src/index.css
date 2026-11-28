@@ -474,14 +474,13 @@
 
   .hero-craft-texture img {
     position: absolute;
-    width: 179%;
-    height: auto;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     max-width: none;
-    left: -43%;
-    top: 0;
-    object-fit: fill;
+    object-fit: cover;
     /* Franjas grises del tercio inferior: textura visible, sin el bloque negro */
-    transform: translateY(-88%);
+    object-position: center 82%;
   }
 
   .craft-banner {
@@ -789,8 +788,9 @@
   .method-learn {
     margin-top: clamp(2.75rem, 6vw, 4rem);
     margin-left: calc(0.875rem + 0.85rem);
-    width: fit-content;
-    max-width: min(100%, 36rem);
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .method-learn-title {
@@ -819,18 +819,18 @@
     margin: 1.15rem 0 0;
     padding: 0;
     display: grid;
-    grid-template-columns: max-content max-content;
-    column-gap: 1.75rem;
+    grid-template-columns: minmax(0, 1fr);
     row-gap: 0.9rem;
-    width: max-content;
+    width: 100%;
     max-width: 100%;
   }
 
   .method-learn-item {
-    display: grid;
-    grid-template-columns: subgrid;
-    grid-column: 1 / -1;
-    align-items: baseline;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    min-width: 0;
   }
 
   .method-learn-meta {
@@ -873,5 +873,26 @@
     height: 0.28em;
     flex: none;
     background: currentColor;
+  }
+
+  @media (min-width: 48rem) {
+    .method-learn {
+      width: fit-content;
+      max-width: min(100%, 36rem);
+    }
+
+    .method-learn-list {
+      grid-template-columns: max-content max-content;
+      column-gap: 1.75rem;
+      width: max-content;
+    }
+
+    .method-learn-item {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+      align-items: baseline;
+      gap: 0;
+    }
   }
 }

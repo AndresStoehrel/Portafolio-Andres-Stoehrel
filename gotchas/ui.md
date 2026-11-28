@@ -27,5 +27,8 @@ Remitly aún lo usa en “flujo actual”. No borrar el componente al quitarlo d
 ## HMR / click a caso
 A veces el root queda vacío si un símbolo falta (ej. `MutePlaceholder` borrado). Compilar o recargar.
 
+## Aprendizajes en móvil
+`.method-learn-list` con dos columnas `max-content` no se encoge bajo `max-width: 100%`. En &lt;48rem el ítem va en una columna (nombre arriba, mono abajo). El subgrid de dos columnas queda solo en desktop.
+
 ## Foto portada 1024
 Full-bleed desktop ~1920 CSS px. Se ve suave en Retina; no upscale con CSS pensando que “arregla” píxeles.

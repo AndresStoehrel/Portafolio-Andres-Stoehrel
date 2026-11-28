@@ -228,7 +228,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <footer
         id="contact"
         className="bg-black text-white"
-        style={{ paddingBlock: 'var(--space-section-y)', paddingInline: 'var(--content-inset)' }}
+        style={{
+          marginTop: 'clamp(2.5rem, 5vw, 4rem)',
+          paddingBlock: 'var(--space-section-y)',
+          paddingInline: 'var(--content-inset)',
+        }}
       >
         <div>
           <h2 className="type-display text-white mb-12 md:mb-16 text-balance max-w-5xl">
