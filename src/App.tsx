@@ -20,18 +20,18 @@ export default function App() {
     ? PROJECTS.find((p) => p.id === selectedProjectId) || null
     : null;
 
-  // Next and Prev project indices for continuous navigation
+  // Solo casos publicados. Pedidos Ya queda en data, sin enlace.
+  const publishedProjects = PROJECTS.filter(
+    (project) => project.id === 'remitly' || project.id === 'telepianxos',
+  );
   const currentIndex = currentProject
-    ? PROJECTS.findIndex((p) => p.id === currentProject.id)
+    ? publishedProjects.findIndex((project) => project.id === currentProject.id)
     : -1;
-  const prevProject =
-    currentIndex > 0
-      ? PROJECTS[currentIndex - 1]
-      : PROJECTS[PROJECTS.length - 1];
+  const prevProject = currentIndex > 0 ? publishedProjects[currentIndex - 1] : null;
   const nextProject =
-    currentIndex < PROJECTS.length - 1
-      ? PROJECTS[currentIndex + 1]
-      : PROJECTS[0];
+    currentIndex >= 0 && currentIndex < publishedProjects.length - 1
+      ? publishedProjects[currentIndex + 1]
+      : null;
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
@@ -113,27 +113,39 @@ export default function App() {
             currentProject.id === 'remitly' ? (
               <RemitlyCaseStudyView
                 onGoBack={handleGoBackToWork}
-                onNavigatePrev={() => setSelectedProjectId(prevProject.id)}
-                onNavigateNext={() => setSelectedProjectId(nextProject.id)}
-                prevProjectTitle={prevProject.title}
-                nextProjectTitle={nextProject.title}
+                onNavigatePrev={
+                  prevProject ? () => setSelectedProjectId(prevProject.id) : undefined
+                }
+                onNavigateNext={
+                  nextProject ? () => setSelectedProjectId(nextProject.id) : undefined
+                }
+                prevProjectTitle={prevProject?.title}
+                nextProjectTitle={nextProject?.title}
               />
             ) : currentProject.id === 'telepianxos' ? (
               <TelepianxosCaseStudyView
                 onGoBack={handleGoBackToWork}
-                onNavigatePrev={() => setSelectedProjectId(prevProject.id)}
-                onNavigateNext={() => setSelectedProjectId(nextProject.id)}
-                prevProjectTitle={prevProject.title}
-                nextProjectTitle={nextProject.title}
+                onNavigatePrev={
+                  prevProject ? () => setSelectedProjectId(prevProject.id) : undefined
+                }
+                onNavigateNext={
+                  nextProject ? () => setSelectedProjectId(nextProject.id) : undefined
+                }
+                prevProjectTitle={prevProject?.title}
+                nextProjectTitle={nextProject?.title}
               />
             ) : (
               <CaseStudyView
                 project={currentProject}
                 onGoBack={handleGoBackToWork}
-                onNavigatePrev={() => setSelectedProjectId(prevProject.id)}
-                onNavigateNext={() => setSelectedProjectId(nextProject.id)}
-                prevProjectTitle={prevProject.title}
-                nextProjectTitle={nextProject.title}
+                onNavigatePrev={
+                  prevProject ? () => setSelectedProjectId(prevProject.id) : undefined
+                }
+                onNavigateNext={
+                  nextProject ? () => setSelectedProjectId(nextProject.id) : undefined
+                }
+                prevProjectTitle={prevProject?.title}
+                nextProjectTitle={nextProject?.title}
               />
             )
           ) : (

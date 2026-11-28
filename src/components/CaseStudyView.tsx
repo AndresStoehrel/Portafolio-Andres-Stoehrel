@@ -5,10 +5,10 @@ import { DeviceMockup } from './DeviceMockup';
 interface CaseStudyViewProps {
   project: ProjectCaseStudy;
   onGoBack: () => void;
-  onNavigatePrev: () => void;
-  onNavigateNext: () => void;
-  prevProjectTitle: string;
-  nextProjectTitle: string;
+  onNavigatePrev?: () => void;
+  onNavigateNext?: () => void;
+  prevProjectTitle?: string;
+  nextProjectTitle?: string;
 }
 
 export const CaseStudyView: React.FC<CaseStudyViewProps> = ({
@@ -436,7 +436,9 @@ export const CaseStudyView: React.FC<CaseStudyViewProps> = ({
           </div>
 
           {/* Navegación Bidireccional entre Proyectos */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+          {(prevProjectTitle || nextProjectTitle) && (
+          <div className={`grid grid-cols-1 gap-6 pt-4${prevProjectTitle && nextProjectTitle ? ' md:grid-cols-2' : ''}`}>
+            {prevProjectTitle && onNavigatePrev ? (
             <button
               type="button"
               onClick={onNavigatePrev}
@@ -450,7 +452,9 @@ export const CaseStudyView: React.FC<CaseStudyViewProps> = ({
                 {prevProjectTitle}
               </div>
             </button>
+            ) : null}
 
+            {nextProjectTitle && onNavigateNext ? (
             <button
               type="button"
               onClick={onNavigateNext}
@@ -464,7 +468,9 @@ export const CaseStudyView: React.FC<CaseStudyViewProps> = ({
                 {nextProjectTitle}
               </div>
             </button>
+            ) : null}
           </div>
+          )}
 
           {/* Retorno al Listado */}
           <div className="text-center mt-12 pt-8 border-t-2 border-white/10">

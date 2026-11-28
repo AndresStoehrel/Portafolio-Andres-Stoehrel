@@ -9,6 +9,7 @@ interface ProjectGridRowProps {
   showTopRule?: boolean;
   onClick: () => void;
   disabled?: boolean;
+  note?: string;
 }
 
 export const ProjectGridRow: React.FC<ProjectGridRowProps> = ({
@@ -20,6 +21,7 @@ export const ProjectGridRow: React.FC<ProjectGridRowProps> = ({
   showTopRule = false,
   onClick,
   disabled = false,
+  note,
 }) => {
   const hasThumbnail = Boolean(imageSrc) || showThumbnail;
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -49,20 +51,27 @@ export const ProjectGridRow: React.FC<ProjectGridRowProps> = ({
       >
         {showTopRule ? <div className="project-grid-row-rule-top" aria-hidden="true" /> : null}
         <div className="flex items-center justify-between gap-6 min-h-[5.5rem] md:min-h-[6.5rem] pt-5 pb-5 md:pb-6">
-          <h3 className="relative inline-block tracking-tight leading-none m-0 font-sans">
-            <span className="text-[clamp(1.375rem,2.85vw,2rem)] font-bold">{title}</span>
-            {index ? (
-              <span
-                className="absolute font-sans font-semibold tabular-nums text-ink leading-none"
-                style={{
-                  fontSize: 'clamp(0.65rem, 1.1vw, 0.875rem)',
-                  top: '0.15em',
-                  left: '100%',
-                  marginLeft: '0.65em',
-                }}
-                aria-hidden="true"
-              >
-                {index}
+          <h3 className="inline-flex items-baseline tracking-tight leading-none m-0 font-sans">
+            <span className="relative inline-block">
+              <span className="text-[clamp(1.375rem,2.85vw,2rem)] font-bold">{title}</span>
+              {index ? (
+                <span
+                  className="absolute font-sans font-semibold tabular-nums text-ink leading-none"
+                  style={{
+                    fontSize: 'clamp(0.65rem, 1.1vw, 0.875rem)',
+                    top: '0.15em',
+                    left: '100%',
+                    marginLeft: '0.65em',
+                  }}
+                  aria-hidden="true"
+                >
+                  {index}
+                </span>
+              ) : null}
+            </span>
+            {note ? (
+              <span className="font-mono font-normal text-[clamp(0.75rem,1vw,0.875rem)] text-ink-muted ml-[2.35rem]">
+                {note}
               </span>
             ) : null}
             {index ? <span className="sr-only"> — proyecto {index}</span> : null}

@@ -15,10 +15,10 @@ import { CaseQuote } from './CaseQuote';
 
 interface TelepianxosCaseStudyViewProps {
   onGoBack: () => void;
-  onNavigatePrev: () => void;
-  onNavigateNext: () => void;
-  prevProjectTitle: string;
-  nextProjectTitle: string;
+  onNavigatePrev?: () => void;
+  onNavigateNext?: () => void;
+  prevProjectTitle?: string;
+  nextProjectTitle?: string;
 }
 
 const caseShell = 'w-full max-w-[90rem] mx-auto pl-3 pr-4 md:pl-4 lg:pl-4 lg:pr-6';
@@ -248,11 +248,15 @@ export const TelepianxosCaseStudyView: React.FC<TelepianxosCaseStudyViewProps> =
 
       <footer className="about-panel-charcoal">
         <div className={`${caseShell} layout-section-y`}>
+          {(prevProjectTitle || nextProjectTitle) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-white/20">
+            {prevProjectTitle && onNavigatePrev ? (
             <button
               type="button"
               onClick={onNavigatePrev}
-              className="text-left py-8 md:pr-8 cursor-pointer border-b md:border-b-0 md:border-r border-white/20 hover:opacity-70 transition-opacity duration-150"
+              className={`text-left py-8 cursor-pointer hover:opacity-70 transition-opacity duration-150${
+                nextProjectTitle ? ' md:pr-8 border-b md:border-b-0 md:border-r border-white/20' : ''
+              }`}
             >
               <div
                 className="type-kicker mb-2"
@@ -262,10 +266,12 @@ export const TelepianxosCaseStudyView: React.FC<TelepianxosCaseStudyViewProps> =
               </div>
               <div className="type-headline font-medium">{prevProjectTitle}</div>
             </button>
+            ) : null}
+            {nextProjectTitle && onNavigateNext ? (
             <button
               type="button"
               onClick={onNavigateNext}
-              className="text-left md:text-right py-8 md:pl-8 cursor-pointer hover:opacity-70 transition-opacity duration-150"
+              className="text-left md:text-right py-8 md:pl-8 md:col-start-2 cursor-pointer hover:opacity-70 transition-opacity duration-150"
             >
               <div
                 className="type-kicker mb-2"
@@ -275,7 +281,9 @@ export const TelepianxosCaseStudyView: React.FC<TelepianxosCaseStudyViewProps> =
               </div>
               <div className="type-headline font-medium">{nextProjectTitle}</div>
             </button>
+            ) : null}
           </div>
+          )}
           <div className="text-center mt-12 pt-8 border-t border-white/15">
             <button
               type="button"

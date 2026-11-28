@@ -127,6 +127,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 imageAlt={`Miniatura ${project.title}`}
                 onClick={() => onSelectProject(project.id)}
                 disabled={project.id === 'pedidos-ya'}
+                note={project.id === 'pedidos-ya' ? 'coming soon' : undefined}
                 showTopRule={index === 0}
               />
             ))}
@@ -136,6 +137,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               showThumbnail
               onClick={() => {}}
               disabled
+              note="coming soon"
             />
           </div>
         )}
